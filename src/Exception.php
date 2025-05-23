@@ -17,12 +17,12 @@ use Throwable;
 class Exception extends PHPException implements ExceptionInterface {
 
     /** Об'єкт з повідомленням винятку (містить його назву та опис) */
-    public protected(set) ExceptionMessage $fullMessage {
+    public protected(set) ExceptionMessageInterface $fullMessage {
         get => $this->fullMessage;
     }
 
     /** Деталі винятку */
-    public protected(set) ExceptionDetails $details {
+    public protected(set) ExceptionDetailsInterface $details {
         get => $this->details;
     }
 
@@ -31,12 +31,12 @@ class Exception extends PHPException implements ExceptionInterface {
     /**
      * Створити виняток.
      *
-     * @param ExceptionMessage|null $fullMessage містить назву та опис винятку
-     * @param ExceptionDetails|null $details містить додаткові деталі винятку
+     * @param ExceptionMessageInterface|null $fullMessage містить назву та опис винятку
+     * @param ExceptionDetailsInterface|null $details містить додаткові деталі винятку
      * @param int $code код винятку
      * @param null|Throwable $previous попередній виняток (використовується для відстеження ланцюжків винятків)
      */
-    public function __construct(?ExceptionMessage $fullMessage = null, ?ExceptionDetails $details = null, int $code = 0, ?Throwable $previous = null) {
+    public function __construct(?ExceptionMessageInterface $fullMessage = null, ?ExceptionDetailsInterface $details = null, int $code = 0, ?Throwable $previous = null) {
         $this->fullMessage = $fullMessage ? $fullMessage : new ExceptionMessage();
         $this->details = $details ? $details : new ExceptionDetails();
         parent::__construct($this->fullMessage->getMessage(), $code, $previous);

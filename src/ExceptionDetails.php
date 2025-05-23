@@ -29,7 +29,7 @@ class ExceptionDetails implements ExceptionDetailsInterface {
     }
 
     /** Секретні дані, що можна використовувати для логування прихованої інформації або для передачі даних, необхідних для обробки винятку */
-    public protected(set) ?ExceptionSecretData $secret = null {
+    public protected(set) ?ExceptionSecretDataInterface $secret = null {
         get => $this->secret;
     }
 
@@ -46,7 +46,7 @@ class ExceptionDetails implements ExceptionDetailsInterface {
     public function __construct(
         InitiatorsEnum $initiator = InitiatorsEnum::App,
         ExceptionTypesEnum $type = ExceptionTypesEnum::Exception,
-        ?ExceptionSecretData $secret = null) {
+        ?ExceptionSecretDataInterface $secret = null) {
         $this->initiator = $initiator;
         $this->type = $type;
         $this->secret = $secret;

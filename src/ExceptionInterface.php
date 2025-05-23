@@ -16,21 +16,21 @@ use Throwable;
 interface ExceptionInterface {
 
     /** Об'єкт з повідомленням винятку (містить його назву та опис) */
-    public ExceptionMessage $fullMessage {get;}
+    public ExceptionMessageInterface $fullMessage {get;}
 
     /** Деталі винятку */
-    public ExceptionDetails $details {get;}
+    public ExceptionDetailsInterface $details {get;}
 
 
 
     /**
      * Створити виняток.
      *
-     * @param ExceptionMessage|null $fullMessage містить назву та опис винятку
-     * @param ExceptionDetails|null $details містить додаткові деталі винятку
+     * @param ExceptionMessageInterface|null $fullMessage містить назву та опис винятку
+     * @param ExceptionDetailsInterface|null $details містить додаткові деталі винятку
      * @param int $code код винятку
      * @param null|Throwable $previous попередній виняток (використовується для відстеження ланцюжків винятків)
      */
-    public function __construct(?ExceptionMessage $fullMessage = null, ?ExceptionDetails $details = null, int $code = 0, ?Throwable $previous = null);
+    public function __construct(?ExceptionMessageInterface $fullMessage = null, ?ExceptionDetailsInterface $details = null, int $code = 0, ?Throwable $previous = null);
 
 }
