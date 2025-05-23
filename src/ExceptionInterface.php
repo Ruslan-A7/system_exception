@@ -21,16 +21,4 @@ interface ExceptionInterface {
     /** Деталі винятку */
     public ExceptionDetailsInterface $details {get;}
 
-
-
-    /**
-     * Створити виняток.
-     *
-     * @param ExceptionMessageInterface|null $fullMessage містить назву та опис винятку
-     * @param ExceptionDetailsInterface|null $details містить додаткові деталі винятку
-     * @param int $code код винятку
-     * @param null|Throwable $previous попередній виняток (використовується для відстеження ланцюжків винятків)
-     */
-    public function __construct(?ExceptionMessageInterface $fullMessage = null, ?ExceptionDetailsInterface $details = null, int $code = 0, ?Throwable $previous = null);
-
 }
