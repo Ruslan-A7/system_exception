@@ -44,7 +44,7 @@ class ExceptionMessage implements ExceptionMessageInterface {
 
     public function getMessage(): string {
         if (!empty($this->description)) {
-            return !empty($this->name) ? $this->name . '<br>' . $this->description : $this->description;
+            return !empty($this->name) ? $this->name . PHP_EOL . $this->description : $this->description;
         } else {
             return $this->name;
         };
