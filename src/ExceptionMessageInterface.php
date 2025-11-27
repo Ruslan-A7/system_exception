@@ -7,6 +7,7 @@ namespace RA7\Framework\System\Exception;
  *
  * Назву винятку можна використовувати для типізації винятків - наприклад: 'Файл не знайдено', 'В доступі відмовлено', 'Недоступний тип' і т.д.
  * Опис винятку призначений для тексту, що зазвичай пишуть в $message винятку.
+ * Також можна додати посилання на документацію до винятку.
  *
  * Якщо опис винятку не задати, то метод getMessage() верне назву винятку (навіть якщо це пустий рядок).
  *
@@ -23,6 +24,9 @@ interface ExceptionMessageInterface {
     /** Опис винятку */
     public string $description {get;}
 
+    /** Посилання на документацію до винятку */
+    public string $link {get;}
+
 
 
     /**
@@ -30,8 +34,9 @@ interface ExceptionMessageInterface {
      *
      * @param string $name назва винятку (можна використовувати для типізації винятків - наприклад: 'Файл не знайдено', 'В доступі відмовлено', 'Недоступний тип' і т.д.)
      * @param string $description опис винятку (текст, що зазвичай пишуть в $message винятку)
+     * @param string $link посилання на документацію до винятку
      */
-    public function __construct(string $name = '', string $description = '');
+    public function __construct(string $name = '', string $description = '', string $link = '');
 
 
 
