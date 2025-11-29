@@ -5,15 +5,16 @@ namespace RA7\Framework\System\Exception;
 use RA7\Framework\System\Enums\InitiatorsEnum;
 
 /**
- * Деталі винятку - містить додаткові деталі для всіх винятків фреймворка, його модулів та додатків на його основі.
+ * Деталі винятку - містить додаткову або службову інформацію про виняток.
  *
  * Ініціатор винятку - це місце або компонент, звідки буде викидатись виняток.
  * Тип винятку - призначений для визначення рівня його критичності та відповідної обробки.
+ * Посилання - посилання на документацію до винятку.
  * Секрет - секретні дані, що можна використовувати для логування прихованої інформації або для передачі даних, необхідних для обробки винятку.
  *
  * @author Ruslan_A7 (RA7) <https://ra7.iuid.cc>
  * Код може містити деякі частини, що були створені за допомогою ChatGPT.
- * @license RA7 Open Free License
+ * @license RA7 Open Free License <https://ra7.iuid.cc/LICENSE>
  * @github <https://github.com/Ruslan-A7>
  */
 class ExceptionDetails implements ExceptionDetailsInterface {
@@ -28,6 +29,11 @@ class ExceptionDetails implements ExceptionDetailsInterface {
         get => $this->type;
     }
 
+    /** Посилання на документацію до винятку */
+    public protected(set) string $link {
+        get => $this->link;
+    }
+
     /** Секретні дані, що можна використовувати для логування прихованої інформації або для передачі даних, необхідних для обробки винятку */
     public protected(set) ?ExceptionSecretDataInterface $secret = null {
         get => $this->secret;
@@ -40,16 +46,21 @@ class ExceptionDetails implements ExceptionDetailsInterface {
      *
      * @param InitiatorsEnum $initiator ініціатор винятку (місце або компонент, що викидає виняток)
      * @param ExceptionTypesEnum $type тип винятку (виняток, помилка, попередження і т.д.)
+     * @param string $link посилання на документацію до винятку
      * @param ExceptionSecretData|null $secret секретні дані винятку
      * (можна використовувати для логування прихованої інформації або для передачі даних, необхідних для обробки винятку)
      */
     public function __construct(
         InitiatorsEnum $initiator = InitiatorsEnum::App,
         ExceptionTypesEnum $type = ExceptionTypesEnum::Exception,
+        string $link = '',
         ?ExceptionSecretDataInterface $secret = null) {
-        $this->initiator = $initiator;
-        $this->type = $type;
-        $this->secret = $secret;
+
+            $this->initiator = $initiator;
+            $this->type = $type;
+            $this->link = $link;
+            $this->secret = $secret;
+
     }
 
 }

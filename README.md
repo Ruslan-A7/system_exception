@@ -11,7 +11,7 @@ Notes:
 
 Copyright (c) Ruslan A7 (RA7). All rights reserved.
 
-Licensed under [RA7 Open Free License](https://ra7.iuid.cc/license)
+Licensed under [RA7 Open Free License](https://ra7.iuid.cc/LICENSE)
 
 ## Українська
 Розширення стандартних користувацьких винятків PHP.
@@ -23,4 +23,4 @@ Licensed under [RA7 Open Free License](https://ra7.iuid.cc/license)
 
 Авторське право (с) Ruslan A7 (RA7). Всі права захищено.
 
-Ліцензовано відповідно до [RA7 Open Free License](https://ra7.iuid.cc/license)
+Ліцензовано відповідно до [RA7 Open Free License](https://ra7.iuid.cc/LICENSE)

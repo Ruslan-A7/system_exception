@@ -11,15 +11,10 @@ use Throwable;
  *
  * @author Ruslan_A7 (RA7) <https://ra7.iuid.cc>
  * Код може містити деякі частини, що були створені за допомогою ChatGPT.
- * @license RA7 Open Free License
+ * @license RA7 Open Free License <https://ra7.iuid.cc/LICENSE>
  * @github <https://github.com/Ruslan-A7>
  */
 class Exception extends PHPException implements ExceptionInterface {
-
-    /** Об'єкт з повідомленням винятку (містить його назву та опис) */
-    public protected(set) ExceptionMessageInterface $fullMessage {
-        get => $this->fullMessage;
-    }
 
     /** Деталі винятку */
     public protected(set) ExceptionDetailsInterface $details {
@@ -31,15 +26,15 @@ class Exception extends PHPException implements ExceptionInterface {
     /**
      * Створити виняток.
      *
-     * @param ExceptionMessageInterface|null $fullMessage містить назву та опис винятку
+     * @param string $message повідомлення винятку
      * @param ExceptionDetailsInterface|null $details містить додаткові деталі винятку
      * @param int $code код винятку
      * @param null|Throwable $previous попередній виняток (використовується для відстеження ланцюжків винятків)
      */
-    public function __construct(?ExceptionMessageInterface $fullMessage = null, ?ExceptionDetailsInterface $details = null, int $code = 0, ?Throwable $previous = null) {
-        $this->fullMessage = $fullMessage ? $fullMessage : new ExceptionMessage();
+    public function __construct(string $message = "", ?ExceptionDetailsInterface $details = null, int $code = 0, ?Throwable $previous = null) {
         $this->details = $details ? $details : new ExceptionDetails();
-        parent::__construct($this->fullMessage->getMessage(), $code, $previous);
+        parent::__construct($message, $code, $previous);
+        // throw $this;
     }
 
 }
