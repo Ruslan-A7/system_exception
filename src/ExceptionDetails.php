@@ -2,7 +2,8 @@
 
 namespace RA7\Framework\System\Exception;
 
-use RA7\Framework\System\Enums\InitiatorsEnum;
+use RA7\Framework\System\Enums\EventInitiatorsEnum;
+use RA7\Framework\System\Enums\TypesEventsEnum;
 
 /**
  * Деталі винятку - містить додаткову або службову інформацію про виняток.
@@ -20,12 +21,12 @@ use RA7\Framework\System\Enums\InitiatorsEnum;
 class ExceptionDetails implements ExceptionDetailsInterface {
 
     /** Ініціатор винятку (наприклад: фреймворк, додаток, модуль або інше) */
-    public protected(set) InitiatorsEnum $initiator {
+    public protected(set) EventInitiatorsEnum $initiator {
         get => $this->initiator;
     }
 
     /** Тип винятку (виняток, помилка, попередження, нотифікація, застаріле і т.п.) */
-    public protected(set) ExceptionTypesEnum $type {
+    public protected(set) TypesEventsEnum $type {
         get => $this->type;
     }
 
@@ -44,15 +45,15 @@ class ExceptionDetails implements ExceptionDetailsInterface {
     /**
      * Створити деталі винятку.
      *
-     * @param InitiatorsEnum $initiator ініціатор винятку (місце або компонент, що викидає виняток)
-     * @param ExceptionTypesEnum $type тип винятку (виняток, помилка, попередження і т.д.)
+     * @param EventInitiatorsEnum $initiator ініціатор винятку (місце або компонент, що викидає виняток)
+     * @param TypesEventsEnum $type тип винятку (виняток, помилка, попередження і т.д.)
      * @param string $link посилання на документацію до винятку
      * @param ExceptionSecretData|null $secret секретні дані винятку
      * (можна використовувати для логування прихованої інформації або для передачі даних, необхідних для обробки винятку)
      */
     public function __construct(
-        InitiatorsEnum $initiator = InitiatorsEnum::App,
-        ExceptionTypesEnum $type = ExceptionTypesEnum::Exception,
+        EventInitiatorsEnum $initiator = EventInitiatorsEnum::App,
+        TypesEventsEnum $type = TypesEventsEnum::Exception,
         string $link = '',
         ?ExceptionSecretDataInterface $secret = null) {
 
