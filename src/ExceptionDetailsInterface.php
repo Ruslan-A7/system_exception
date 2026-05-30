@@ -29,6 +29,15 @@ interface ExceptionDetailsInterface {
     /** Посилання на документацію до винятку */
     public string $link {get;}
 
+    /**
+     * Визначає, чи можна викидати цей виняток, чи він має залишатися прихованим (наприклад для запису в журнал)
+     * В залежності від режиму запуску додатка поведінка може змінюватися, а цей параметр може ігноруватися. 
+     */
+    public bool $isThrowable {get;}
+
+    /** Визначає, чи має цей виняток викидатися автоматично при створенні */
+    public bool $autoThrowable {get;}
+
     /** Секретні дані, що можна використовувати для логування прихованої інформації або для передачі даних, необхідних для обробки винятку */
     public ?ExceptionSecretInterface $secret {get;}
 
@@ -40,6 +49,8 @@ interface ExceptionDetailsInterface {
      * @param EventInitiatorsEnum $initiator ініціатор винятку (місце або компонент, що викидає виняток)
      * @param TypesEventsEnum $type тип винятку (виняток, помилка, попередження і т.д.)
      * @param string $link посилання на документацію до винятку
+     * @param bool $isThrowable визначає, чи можна викидати цей виняток, чи він має залишатися прихованим (наприклад для запису в журнал)
+     * @param bool $autoThrowable автоматичне викидання винятку при створенні
      * @param ExceptionSecretInterface|null $secret секретні дані винятку
      * (можна використовувати для логування прихованої інформації або для передачі даних, необхідних для обробки винятку)
      */
@@ -47,6 +58,8 @@ interface ExceptionDetailsInterface {
         EventInitiatorsEnum $initiator = EventInitiatorsEnum::App, 
         TypesEventsEnum $type = TypesEventsEnum::Exception,
         string $link = '',
+        bool $isThrowable = true,
+        bool $autoThrowable = false,
         ?ExceptionSecretInterface $secret = null
     );
 

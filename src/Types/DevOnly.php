@@ -3,6 +3,7 @@
 namespace RA7\Framework\System\Exception\Types;
 
 use RA7\Framework\System\Exception\Exception;
+use RA7\Framework\System\Exception\ExceptionDetailsInterface;
 use Throwable;
 use RA7\Framework\System\Exception\ExceptionDetails;
 use RA7\Framework\System\Enums\TypesEventsEnum;
@@ -23,11 +24,17 @@ class DevOnly extends Exception {
      * Створити виняток лише для розробника.
      *
      * @param string $message опис винятку
+     * @param ExceptionDetailsInterface $details деталі винятку
      * @param int $code код винятку
      * @param null|Throwable $previous попередній виняток (використовується для відстеження ланцюжків винятків)
      */
-    public function __construct(string $message, int $code = 0, ?Throwable $previous = null) {
-        $this->details = new ExceptionDetails(type: TypesEventsEnum::DevOnly);
+    public function __construct(
+        string $message,
+        ExceptionDetailsInterface $details = new ExceptionDetails(type: TypesEventsEnum::DevOnly),
+        int $code = 0,
+        ?Throwable $previous = null
+    ) {
+        $this->details = $details;
 
         parent::__construct($message, $this->details, $code, $previous);
     }

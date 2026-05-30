@@ -3,9 +3,9 @@
 namespace RA7\Framework\System\Exception\Types;
 
 use RA7\Framework\System\Exception\Exception;
+use RA7\Framework\System\Exception\ExceptionDetailsInterface;
 use Throwable;
 use RA7\Framework\System\Exception\ExceptionDetails;
-use RA7\Framework\System\Exception\ExceptionDetailsInterface;
 use RA7\Framework\System\Enums\TypesEventsEnum;
 
 /**
@@ -22,7 +22,7 @@ class Error extends Exception {
      * Створити фатальну помилку.
      *
      * @param string $message опис помилки
-     * @param ExceptionDetailsInterface $details
+     * @param ExceptionDetailsInterface $details деталі винятку
      * @param int $code код помилки
      * @param null|Throwable $previous попередній виняток/помилка (використовується для відстеження ланцюжків винятків)
      */

@@ -34,7 +34,10 @@ class Exception extends PHPException implements ExceptionInterface {
     public function __construct(string $message = "", ?ExceptionDetailsInterface $details = null, int $code = 0, ?Throwable $previous = null) {
         $this->details = $details ? $details : new ExceptionDetails();
         parent::__construct($message, $code, $previous);
-        // throw $this;
+        
+        if ($this->details->isThrowable === true && $this->details->autoThrowable === true) {
+            throw $this;
+        }
     }
 
 }

@@ -3,6 +3,7 @@
 namespace RA7\Framework\System\Exception\Types;
 
 use RA7\Framework\System\Exception\Exception;
+use RA7\Framework\System\Exception\ExceptionDetailsInterface;
 use Throwable;
 use RA7\Framework\System\Exception\ExceptionDetails;
 use RA7\Framework\System\Enums\TypesEventsEnum;
@@ -21,11 +22,17 @@ class RecoverableError extends Exception {
      * Створити критичну помилку що можна обробити.
      *
      * @param string $message опис помилки
+     * @param ExceptionDetailsInterface $details деталі винятку
      * @param int $code код помилки
      * @param null|Throwable $previous попередній виняток/помилка (використовується для відстеження ланцюжків винятків)
      */
-    public function __construct(string $message, int $code = 0, ?Throwable $previous = null) {
-        $this->details = new ExceptionDetails(type: TypesEventsEnum::RecoverableError);
+    public function __construct(
+        string $message,
+        ExceptionDetailsInterface $details = new ExceptionDetails(type: TypesEventsEnum::RecoverableError),
+        int $code = 0,
+        ?Throwable $previous = null
+    ) {
+        $this->details = $details;
 
         parent::__construct($message, $this->details, $code, $previous);
     }
