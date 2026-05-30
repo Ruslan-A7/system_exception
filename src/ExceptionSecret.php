@@ -3,7 +3,7 @@
 namespace RA7\Framework\System\Exception;
 
 /**
- * Інтерфейс секретних даних винятку - можна використовувати для логування прихованої інформації або для передачі даних, необхідних для обробки винятку.
+ * Секретні дані винятку - можна використовувати для логування прихованої інформації або для передачі даних, необхідних для обробки винятку.
  *
  * Може містити секретне повідомлення та дані.
  *
@@ -12,13 +12,17 @@ namespace RA7\Framework\System\Exception;
  * @license RA7 Open Free License <https://ra7.iuid.cc/LICENSE>
  * @github <https://github.com/Ruslan-A7>
  */
-interface ExceptionSecretDataInterface {
+class ExceptionSecret implements ExceptionSecretInterface {
 
     /** Секретне повідомлення для адміністрації або розробника, що має бути приховано від користувача */
-    public string $message {get;}
+    public protected(set) string $message {
+        get => $this->message;
+    }
 
     /** Секретні дані винятку, що можна використовувати для логування прихованої інформації або для передачі даних, необхідних для обробки винятку */
-    public array $data {get;}
+    public protected(set) array $data {
+        get => $this->data;
+    }
 
 
 
@@ -28,6 +32,9 @@ interface ExceptionSecretDataInterface {
      * @param string $message секретне повідомлення для адміністрації або розробника, що має бути приховано від користувача
      * @param array $data секретні дані, що можна використовувати для логування прихованої інформації або для передачі даних, необхідних для обробки винятку
      */
-    public function __construct(string $message = '', array $data = []);
+    public function __construct(string $message = '', array $data = []) {
+        $this->message = $message;
+        $this->data = $data;
+    }
 
 }

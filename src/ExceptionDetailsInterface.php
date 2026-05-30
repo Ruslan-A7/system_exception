@@ -30,7 +30,7 @@ interface ExceptionDetailsInterface {
     public string $link {get;}
 
     /** Секретні дані, що можна використовувати для логування прихованої інформації або для передачі даних, необхідних для обробки винятку */
-    public ?ExceptionSecretDataInterface $secret {get;}
+    public ?ExceptionSecretInterface $secret {get;}
 
 
 
@@ -40,14 +40,14 @@ interface ExceptionDetailsInterface {
      * @param EventInitiatorsEnum $initiator ініціатор винятку (місце або компонент, що викидає виняток)
      * @param TypesEventsEnum $type тип винятку (виняток, помилка, попередження і т.д.)
      * @param string $link посилання на документацію до винятку
-     * @param ExceptionSecretDataInterface|null $secret секретні дані винятку
+     * @param ExceptionSecretInterface|null $secret секретні дані винятку
      * (можна використовувати для логування прихованої інформації або для передачі даних, необхідних для обробки винятку)
      */
     public function __construct(
         EventInitiatorsEnum $initiator = EventInitiatorsEnum::App, 
         TypesEventsEnum $type = TypesEventsEnum::Exception,
         string $link = '',
-        ?ExceptionSecretDataInterface $secret = null
+        ?ExceptionSecretInterface $secret = null
     );
 
 }
